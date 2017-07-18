@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <style>
+      html {
+        color: black;
+      }
+
+      .key {
+        transition: all 0.1s;
+      }
+
+      .playing {
+        transform: scale(1.1);
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>JS Drumkit</h1>
+    <div class='keys'>
+      <div data-key='65' class='key'>
+        <kbd>A</kbd>
+        <div>Kick</div>
+      </div>
+      <div data-key='83' class='key'>
+        <kbd>S</kbd>
+        <div>Snare</div>
+      </div>
+    </div>
+
+    <audio data-key='65' src='./sounds/kick.wav' />
+    <audio data-key='83' src='./sounds/snare.wav' />
+
+    <script>
+      window.addEventListener('keydown', (e) => {
+        console.log(e.keyCode);
+        let audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); //the [] is called an attribute selector
+        if (!audio) return;
+        
+        //play audio
+        audio.currentTime = 0;
+        audio.play();
+
+        //animate key
+        let key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+        key.classList.add('playing');
+        //console.log(key);
+      });
+
+      let keys = document.querySelectorAll('.key');
+      keys.forEach((key) => {
+        key.addEventListener('transitionend', (e) => {
+          if (e.propertyName !== 'transform') return;
+          key.classList.remove('playing');
+        })
+      });
+    </script>
+  </body>
+</html>
