@@ -2,29 +2,70 @@
   <head>
     <style>
       html {
-        color: black;
+        font-size: 10px;
+        background: url(http://i.imgur.com/b9r5sEL.jpg) bottom center;
+        background-size: cover;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Helvetica, Arial, sans-serif;
+        font-weight: 100;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 1.6rem;
+      }
+
+      .keys {
+        display: flex;
+        flex: 1;
+        min-height: 100vh;
+        align-items: center;
+        justify-content: center;
       }
 
       .key {
-        transition: all 0.1s;
+        background: rgba(0, 0, 0, 0.4);
+        border: .4rem solid white;
+        border-radius: 1rem;
+        color: white;
+        margin: 1.6rem;
+        padding: 1rem;
+        text-align: center;
+        transition: all .08s;
+        width: 6rem;
+      }
+
+      .char {
+        display: block;
+        font-size: 4rem;
+      }
+
+      .instrument {
+        font-size: 1.2rem;
       }
 
       .playing {
         transform: scale(1.1);
         color: red;
+        box-shadow: 0 0 2rem 0.2rem red;
       }
     </style>
+    <title>JS Drumkit</title>
   </head>
   <body>
-    <h1>JS Drumkit</h1>
+    <!--<h1>JS Drumkit</h1>-->
     <div class='keys'>
       <div data-key='65' class='key'>
-        <kbd>A</kbd>
-        <div>Kick</div>
+        <kbd class='char'>A</kbd>
+        <div class='instrument'>Kick</div>
       </div>
       <div data-key='83' class='key'>
-        <kbd>S</kbd>
-        <div>Snare</div>
+        <kbd class='char'>S</kbd>
+        <div class='instrument'>Snare</div>
       </div>
     </div>
 
