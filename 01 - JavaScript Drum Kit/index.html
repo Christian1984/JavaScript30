@@ -1,59 +1,6 @@
 <html>
   <head>
-    <style>
-      html {
-        font-size: 10px;
-        background: url(http://i.imgur.com/b9r5sEL.jpg) bottom center;
-        background-size: cover;
-      }
-
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: Helvetica, Arial, sans-serif;
-        font-weight: 100;
-      }
-
-      h1 {
-        text-align: center;
-        margin-top: 1.6rem;
-      }
-
-      .keys {
-        display: flex;
-        flex: 1;
-        min-height: 100vh;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .key {
-        background: rgba(0, 0, 0, 0.4);
-        border: .4rem solid white;
-        border-radius: 1rem;
-        color: white;
-        margin: 1.6rem;
-        padding: 1rem;
-        text-align: center;
-        transition: all .08s;
-        width: 6rem;
-      }
-
-      .char {
-        display: block;
-        font-size: 4rem;
-      }
-
-      .instrument {
-        font-size: 1.2rem;
-      }
-
-      .playing {
-        transform: scale(1.1);
-        color: red;
-        box-shadow: 0 0 2rem 0.2rem red;
-      }
-    </style>
+    <link rel='stylesheet' href='style.css' />
     <title>JS Drumkit</title>
   </head>
   <body>
@@ -61,20 +8,63 @@
     <div class='keys'>
       <div data-key='65' class='key'>
         <kbd class='char'>A</kbd>
-        <div class='instrument'>Kick</div>
+        <div class='instrument'>Boom</div>
       </div>
+
       <div data-key='83' class='key'>
         <kbd class='char'>S</kbd>
+        <div class='instrument'>Kick</div>
+      </div>
+      
+      <div data-key='68' class='key'>
+        <kbd class='char'>D</kbd>
         <div class='instrument'>Snare</div>
+      </div>
+      
+      <div data-key='70' class='key'>
+        <kbd class='char'>F</kbd>
+        <div class='instrument'>Clap</div>
+      </div>
+      
+      <div data-key='71' class='key'>
+        <kbd class='char'>G</kbd>
+        <div class='instrument'>Tink</div>
+      </div>
+      
+      <div data-key='72' class='key'>
+        <kbd class='char'>H</kbd>
+        <div class='instrument'>Tom</div>
+      </div>
+      
+      <div data-key='74' class='key'>
+        <kbd class='char'>J</kbd>
+        <div class='instrument'>Ride</div>
+      </div>
+      
+      <div data-key='75' class='key'>
+        <kbd class='char'>K</kbd>
+        <div class='instrument'>Open Hat</div>
+      </div>
+      
+      <div data-key='76' class='key'>
+        <kbd class='char'>L</kbd>
+        <div class='instrument'>Hi-Hat</div>
       </div>
     </div>
 
-    <audio data-key='65' src='./sounds/kick.wav' />
-    <audio data-key='83' src='./sounds/snare.wav' />
+    <audio data-key='65' src='./sounds/boom.wav' />
+    <audio data-key='83' src='./sounds/kick.wav' />
+    <audio data-key='68' src='./sounds/snare.wav' />
+    <audio data-key='70' src='./sounds/clap.wav' />
+    <audio data-key='71' src='./sounds/tink.wav' />
+    <audio data-key='72' src='./sounds/tom.wav' />
+    <audio data-key='74' src='./sounds/ride.wav' />
+    <audio data-key='75' src='./sounds/openhat.wav' />
+    <audio data-key='76' src='./sounds/hihat.wav' />
 
     <script>
       window.addEventListener('keydown', (e) => {
-        console.log(e.keyCode);
+        //console.log(e.keyCode);
         let audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); //the [] is called an attribute selector
         if (!audio) return;
         
@@ -85,9 +75,9 @@
         //animate key
         let key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
         key.classList.add('playing');
-        //console.log(key);
       });
 
+      //event listener for reverting the animation
       let keys = document.querySelectorAll('.key');
       keys.forEach((key) => {
         key.addEventListener('transitionend', (e) => {
