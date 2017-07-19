@@ -19,11 +19,9 @@
       </div>
       <div class='awatch'>
         <div class='awatch__face'>
-          <div class='awatch__handcanvas'>
-            <div class='awatch__hand awatch__hand--h'></div>
-            <div class='awatch__hand awatch__hand--m'></div>
-            <div class='awatch__hand awatch__hand--s'></div>
-          </div>
+          <div class='awatch__hand awatch__hand--h'></div>
+          <div class='awatch__hand awatch__hand--m'></div>
+          <div class='awatch__hand awatch__hand--s'></div>
         </div>
       </div>
     </div>
@@ -45,9 +43,9 @@
       }
 
       function updateAnalogClock(h, m, s) {
-        let sdeg = s / 60 * 360 + 90;
-        let mdeg = m / 60 * 360 + 90;
-        let hdeg = h / 12 * 360 + 90;
+        let sdeg = s / 60 * 360 - 90;
+        let mdeg = m / 60 * 360 - 90;
+        let hdeg = h / 12 * 360 - 90;
 
         document.querySelector('.awatch__hand--s').style.transform = `rotate(${sdeg}deg)`;document.querySelector('.awatch__hand--s').style.transform = `rotate(${sdeg}deg)`;
         document.querySelector('.awatch__hand--m').style.transform = `rotate(${mdeg}deg)`;
