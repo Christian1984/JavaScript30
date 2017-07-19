@@ -1,0 +1,22 @@
+html {
+  font-size: 10px;
+}
+
+body {
+  background: #111;
+  font-family: Helvetica, sans-serif;
+  font-weight: 100;
+}
+
+.dwatch {
+  align-items: center;
+  color: #ccc;
+  display: flex;
+  flex: 1;
+  font-size: 10rem;
+  height: 25vh;
+  justify-content: center;
+}
+
+.digit {
+}
