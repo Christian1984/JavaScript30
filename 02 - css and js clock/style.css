@@ -43,11 +43,11 @@ body {
 
 .awatch__hand {
       width:13rem;
-      height:6px;
+      height:.5rem;
       background:white;
-      border-radius: .5rem;
+      border-radius: .25rem;
       position: absolute;
       top:62.5%;
-      transform: translateY(3px) rotate(90deg);
+      transform: translateY(.25px) rotate(90deg);
       transform-origin: 12rem;
 }
