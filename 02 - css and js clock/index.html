@@ -54,40 +54,21 @@
         document.querySelector('.awatch__hand--h').style.transform = `rotate(${hdeg}deg)`;
       }
 
-      (function() {
-        var s = 0;
-        var m = 0;
-        var h = 0;
+      function updateClocks() {
+        let d = new Date();
+        let s = d.getSeconds();
+        let m = d.getMinutes();
+        let h = d.getHours();
+        
+        updateDigitalClock(h, m, s);
+        updateAnalogClock(h, m, s);
+      }
 
-        let isStopwatch = false;
+      (function() {
+        updateClocks();
 
         window.setInterval(() => {
-          if (isStopwatch) {
-            s++;
-
-            if (s % 60 === 0) {
-              s = 0;
-              m++;
-
-              if (m % 60 === 0) {
-                m = 0;
-                h++;
-
-                if (h % 24 === 0) {
-                  h = 0;
-                }
-              }
-            }
-          }
-          else {
-            let d = new Date();
-            s = d.getSeconds();
-            m = d.getMinutes();
-            h = d.getHours();
-          }
-
-          updateDigitalClock(h, m, s);
-          updateAnalogClock(h, m, s);
+          updateClocks();
         }, 1000);
       })();
     </script>
