@@ -6,15 +6,22 @@
     <div class='canvas'>
       <div class='dwatch'>
         <div class='digit digit--h'>
-          00
+          --
         </div>
         :
         <div class='digit digit--m'>
-          00
+          --
         </div>
         :
         <div class='digit digit--s'>
-          00
+          --
+        </div>
+      </div>
+      <div class='awatch'>
+        <div class='awatch__face'>
+          <div class='awatch__hand awatch__hand--h'></div>
+          <div class='awatch__hand awatch__hand--m'></div>
+          <div class='awatch__hand awatch__hand--s'></div>
         </div>
       </div>
     </div>
@@ -27,6 +34,12 @@
         }
 
         return s;
+      }
+
+      function updateDigitalWatch(h, m , s) {
+          document.querySelector(`.digit--h`).innerHTML = twoDigits(h);
+          document.querySelector(`.digit--m`).innerHTML = twoDigits(m);
+          document.querySelector(`.digit--s`).innerHTML = twoDigits(s);
       }
 
       (function() {
@@ -55,15 +68,13 @@
             }
           }
           else {
-            s = new Date().getSeconds();
-            m = new Date().getMinutes();
-            h = new Date().getHours();
+            let d = new Date();
+            s = d.getSeconds();
+            m = d.getMinutes();
+            h = d.getHours();
           }
 
-          console.log(`${twoDigits(h)}:${twoDigits(m)}:${twoDigits(s)}`);
-          document.querySelector(`.digit--h`).innerHTML = twoDigits(h);
-          document.querySelector(`.digit--m`).innerHTML = twoDigits(m);
-          document.querySelector(`.digit--s`).innerHTML = twoDigits(s);
+          updateDigitalWatch(h, m, s);
         }, 1000);
       })();
     </script>

@@ -13,10 +13,26 @@ body {
   color: #ccc;
   display: flex;
   flex: 1;
-  font-size: 10rem;
+  font-size: 8rem;
   height: 25vh;
   justify-content: center;
 }
 
-.digit {
+.awatch {
+  align-items: center;
+  display: flex;
+  height: 75vh;
+  justify-content: center;
+}
+
+.awatch__face {
+  border: solid #ccc 3rem;
+  border-radius: 50%;
+  height: 30rem;
+  width: 30rem;
+}
+
+.awatch__hand {
+  height: 1rem;
+  width: 15rem;
 }
