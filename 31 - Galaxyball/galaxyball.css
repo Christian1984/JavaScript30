@@ -1,7 +1,7 @@
 body {
   background: #018DED url('./background.jpg');
   background-size: cover;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: 10px;
   margin: 0;
   padding: 0;
@@ -17,18 +17,56 @@ body {
 .ball {
   background: white;
   border-radius: 50%;
-  height: .5rem;
+  height: 12px;
   position: absolute;
-  width: .5rem;
-  transform: translate(-50%, -50%);
+  width: 12px;
 }
 
 .paddle {
   background: white;
-  border-radius: .25rem;
-  height: .5rem;
+  border-radius: 6px;
+  height: 12px;
   position: absolute;
-  /*top: 90%;*/
-  width: 4rem;
-  /*transition: transform .05s linear;*/
+  width: 80px;
+}
+
+.block {
+  background: white;
+  border: black 1px solid;
+  height: 12px;
+  position: absolute;
+  width: 40px;
+}
+
+.block--hidden {
+  visibility: hidden;
+}
+
+.scoreboard {
+  color: white;
+  position: absolute;
+  font-size: 1.3rem;
+  font-weight: 100;
+  right: 0;
+}
+
+.score-display, .up-display {
+  margin: .3rem .3rem 0 0;
+  position: relative;
+  text-align: right;
+}
+
+.gameover {
+  color: white;
+  font-size: .8rem;
+  font-weight: 300;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
+}
+
+.gameover--active {
+  visibility: visible;
 }
