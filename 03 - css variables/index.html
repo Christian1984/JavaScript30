@@ -83,14 +83,17 @@
       document.documentElement.style.setProperty('--base', this.value);   
     }
 
-    (function() {
-      document.getElementById("spacing").addEventListener("input", updateSpacing);
-      document.getElementById("blur").addEventListener("input", updateBlur);
-      document.getElementById("base").addEventListener("input", updateColor);
+    function handleUpdate() {
+      let newVal = this.value + (this.dataset.sizing || '');
+      document.documentElement.style.setProperty(`--${this.name}`, newVal)
+    }
 
-      let cssBaseColor = getComputedStyle(document.body).getPropertyValue('--base');
-      console.log(cssBaseColor);
-      document.getElementById("base").value = cssBaseColor;
+    (function() {
+      let inputs = document.querySelectorAll("input");
+      inputs.forEach(input => {
+        input.addEventListener("input", handleUpdate);
+        handleUpdate.bind(input)();
+      });
     })();
   </script>
 
