@@ -126,25 +126,22 @@
   </div>
 
   <script>
-    function toggleOpen() {
-      this.classList.toggle('open');
-    }
-
-    function toggleOpenactive(e) {
-      if (e.propertyName.includes('flex')) {
-        this.classList.toggle('openactive');  
-      }    
-    }
 
     let panels = document.querySelectorAll('div.panel');
     console.log(panels);
     
     panels.forEach(panel => {
-      panel.addEventListener('click', toggleOpen);
+      panel.addEventListener('click', () => {
+        panel.classList.toggle('open');
+      });
     });
 
     panels.forEach(panel => {
-      panel.addEventListener('transitionend', toggleOpenactive);
+      panel.addEventListener('transitionend', (e) => {
+        if (e.propertyName.includes('flex')) {
+          panel.classList.toggle('openactive');  
+        } 
+      });
     });
   </script>
 
