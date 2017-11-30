@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Type Ahead 👀</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <form class="search-form">
+    <input type="text" class="search" placeholder="City or State">
+    <ul class="suggestions">
+      <li>Filter for a city</li>
+      <li>or a state</li>
+    </ul>
+  </form>
+<script>
+  (function() {
+    const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+    
+    const cities = [];
+    const suggestions = document.querySelector('.suggestions');
+
+    //shorthand:
+    fetch(endpoint)
+      .then(prom => prom.json())
+      .then(data => {
+        cities.push(...data);
+        console.log(cities);
+      });
+
+    function findMatches(filter) {
+      /*const regex = new RegExp(filter, "gi");
+      return cities.filter(city => city.city.match(regex));*/
+
+      const f = filter.toLowerCase();
+      return cities.filter(city => 
+        city.city.toLowerCase().includes(f) || 
+        city.state.toLowerCase().includes(f));
+    }
+
+    function displayMatches(matches, filter) {
+      console.log(matches);
+      const regex = new RegExp(filter, 'gi');
+
+      const liArray = matches.map(city => {
+        const cityname = city.city.replace(regex, `<span class="hl">${filter}</span>`)
+        const statename = city.state.replace(regex, `<span class="hl">${filter}</span>`)
+        return `
+          <li>
+            <span class="name">${cityname}, ${statename}</span>
+            <span class="population">${city.population}</span>
+          </li>
+        `});
+      suggestions.innerHTML = liArray.join('');
+    }
+
+    document.querySelector(".search").addEventListener("input", (e) => {
+      let filter = e.target.value;
+      let res = findMatches(filter);
+      displayMatches(res, filter);
+    });
+
+    //long, nested version
+    /*let responsePromise = fetch(endpoint); //returns a promise
+
+    let jsonPromise = responsePromise.then(response => {
+      let jsonPromise = response.json()
+      jsonPromise.then((data) => {
+        console.log(data);
+      });
+    });*/
+  })();
+
+</script>
+  </body>
+</html>
