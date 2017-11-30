@@ -132,6 +132,12 @@
     
     panels.forEach(panel => {
       panel.addEventListener('click', () => {
+        panels.forEach((p) => {
+          if (p !== panel) {
+            p.classList.remove('open');
+          }
+        });
+
         panel.classList.toggle('open');
       });
     });
